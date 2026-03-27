@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Em Movimento — Consultoria em Pessoas, Vendas & Operações</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sand:     #F5EEF0;
+    --sand-mid: #E8DBE0;
+    --bark:     #2D1020;
+    --bark-mid: #4A1E32;
+    --terra:    #C0A040;
+    --terra-light: #D4B85A;
+    --amber:    #E8CC80;
+    --cream:    #FAF6F8;
+    --muted:    #9C7A88;
+    --line:     rgba(192,160,64,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(250,246,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-brand-top {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bark);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-brand-sub {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terra);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--terra); }
+
+  .nav-cta {
+    background: var(--bark);
+    color: var(--cream) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--terra) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 140px 60px 80px;
+    background: var(--bark);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(160px, 22vw, 320px);
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+
+  .hero-eyebrow-line {
+    width: 40px;
+    height: 1px;
+    background: var(--terra);
+  }
+
+  .hero-eyebrow span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber);
+    display: block;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .hero-tagline {
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(250,246,248,0.65);
+    max-width: 480px;
+    border-left: 2px solid var(--terra);
+    padding-left: 24px;
+  }
+
+  .hero-tagline strong {
+    color: var(--amber);
+    font-weight: 500;
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--terra), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── SOBRE ── */
+  .sobre {
+    padding: 120px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .sobre-left .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 20px;
+  }
+
+  .sobre-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--bark);
+    margin-bottom: 32px;
+  }
+
+  .sobre-left h2 em {
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  .sobre-left p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--bark-mid);
+    margin-bottom: 20px;
+  }
+
+  .sobre-left p:last-of-type { margin-bottom: 0; }
+
+  .sobre-left strong { font-weight: 600; color: var(--bark); }
+
+  .sobre-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-block {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .stat-block:first-child { border-top: 1px solid var(--line); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--terra);
+    line-height: 1;
+    min-width: 80px;
+  }
+
+  .stat-num span {
+    font-size: 24px;
+    vertical-align: super;
+  }
+
+  .stat-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--bark);
+    margin-bottom: 6px;
+    margin-top: 8px;
+  }
+
+  .stat-info p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── MÉTODO MOVE ── */
+  .move-section {
+    background: var(--bark);
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .move-section::before {
+    content: 'MOVE';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(200px, 30vw, 420px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.025);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -10px;
+  }
+
+  .move-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .move-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    gap: 40px;
+  }
+
+  .move-header-left .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 16px;
+  }
+
+  .move-header-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4.5vw, 62px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+  }
+
+  .move-header-left h2 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .move-header-right {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(250,246,248,0.55);
+    max-width: 360px;
+    text-align: right;
+  }
+
+  .move-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .move-card {
+    background: rgba(255,255,255,0.04);
+    padding: 48px 32px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.4s, border-color 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .move-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--terra);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .move-card:hover {
+    background: rgba(196,123,58,0.08);
+    border-color: rgba(196,123,58,0.3);
+  }
+
+  .move-card:hover::after { transform: scaleX(1); }
+
+  .move-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--terra);
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  .move-word {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+  }
+
+  .move-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .move-card p {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(250,246,248,0.55);
+  }
+
+  /* ── CAMINHOS ── */
+  .caminhos {
+    padding: 120px 60px;
+    background: var(--bark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .caminhos::before {
+    content: 'A→Z';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(140px, 20vw, 280px);
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(255,255,255,0.025);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .caminhos-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .caminhos-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .caminhos-header .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 16px;
+  }
+
+  .caminhos-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4.5vw, 62px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .caminhos-header h2 em { font-style: italic; color: var(--amber); }
+
+  .caminhos-header p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,246,248,0.55);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .caminhos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .caminho-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 64px 52px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s, border-color 0.4s;
+  }
+
+  .caminho-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--terra);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .caminho-card:hover { background: rgba(192,160,64,0.07); border-color: rgba(192,160,64,0.25); }
+  .caminho-card:hover::after { transform: scaleX(1); }
+
+  .caminho-icon { font-size: 44px; margin-bottom: 28px; display: block; }
+
+  .caminho-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 16px;
+  }
+
+  .caminho-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .caminho-card h3 em { font-style: italic; color: var(--amber); }
+
+  .caminho-card > p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(250,246,248,0.6);
+    margin-bottom: 32px;
+  }
+
+  .caminho-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .caminho-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(250,246,248,0.55);
+    line-height: 1.5;
+  }
+
+  .caminho-items li::before {
+    content: '→';
+    color: var(--terra);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .caminhos-bridge {
+    margin-top: 60px;
+    text-align: center;
+    padding: 40px;
+    border: 1px solid rgba(192,160,64,0.2);
+    background: rgba(192,160,64,0.04);
+  }
+
+  .caminhos-bridge p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: italic;
+    color: rgba(250,246,248,0.65);
+    line-height: 1.6;
+  }
+
+  .caminhos-bridge strong { color: var(--amber); font-style: normal; }
+
+  @media (max-width: 768px) {
+    .caminhos-grid { grid-template-columns: 1fr; }
+    .caminho-card { padding: 48px 28px; }
+  }
+
+  /* ── JORNADA ── */
+  .jornada {
+    padding: 120px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .jornada-header {
+    margin-bottom: 80px;
+  }
+
+  .jornada-header .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 16px;
+  }
+
+  .jornada-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--bark);
+  }
+
+  .jornada-header h2 em { font-style: italic; color: var(--terra); }
+
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    position: relative;
+  }
+
+  .pipeline::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--terra), var(--amber), var(--terra), transparent);
+  }
+
+  .pipe-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 12px;
+  }
+
+  .pipe-dot {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .pipe-step:hover .pipe-dot {
+    border-color: var(--terra);
+    background: var(--sand);
+  }
+
+  .pipe-step h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 8px;
+  }
+
+  .pipe-step p {
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ── QUOTE STRIP ── */
+  .quote-strip {
+    background: var(--terra);
+    padding: 72px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-strip::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+  }
+
+  .quote-strip blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    max-width: 800px;
+    margin: 0 auto 20px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 2;
+  }
+
+  .quote-strip cite {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(250,246,248,0.65);
+  }
+
+  /* ── SERVIÇOS ── */
+  .servicos {
+    padding: 120px 60px;
+    background: var(--sand-mid);
+  }
+
+  .servicos-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .servicos-header {
+    margin-bottom: 72px;
+  }
+
+  .servicos-header .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 16px;
+  }
+
+  .servicos-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+
+  .servicos-header h2 em { font-style: italic; color: var(--terra); }
+
+  .servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .servico-card {
+    background: var(--cream);
+    padding: 48px 36px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .servico-card:hover {
+    border-color: var(--terra);
+    transform: translateY(-4px);
+  }
+
+  .servico-icon {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .servico-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 16px;
+  }
+
+  .servico-card p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .servico-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terra);
+    border: 1px solid var(--terra);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* ── QUOTE 2 ── */
+  .quote-2 {
+    padding: 100px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quote-2 blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .quote-2 blockquote::before {
+    content: '\201C';
+    font-size: 100px;
+    color: var(--terra);
+    opacity: 0.15;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .quote-2-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .quote-2-deco span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .quote-2-line { width: 40px; height: 1px; background: var(--terra); }
+
+  /* ── SEGMENTOS ── */
+  .segmentos {
+    padding: 40px 60px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .segmentos .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .seg-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .seg-pill {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--bark-mid);
+    border: 1px solid var(--line);
+    padding: 12px 28px;
+    border-radius: 100px;
+    background: var(--cream);
+    transition: all 0.3s;
+  }
+
+  .seg-pill:hover {
+    background: var(--bark);
+    color: var(--cream);
+    border-color: var(--bark);
+  }
+
+  .seg-pill.destaque {
+    background: var(--bark);
+    color: var(--amber);
+    border-color: var(--bark);
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--bark);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(196,123,58,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-final .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 24px;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .cta-final h2 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .cta-final p {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(250,247,242,0.6);
+    max-width: 500px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--terra);
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 2px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--terra-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 40px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 2px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--terra);
+    background: rgba(196,123,58,0.1);
+  }
+
+  .cta-closing-quote {
+    margin-top: 72px;
+    padding-top: 56px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: italic;
+    color: rgba(250,246,248,0.4);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1A0A14;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .footer-brand span {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-top: 4px;
+    font-style: normal;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(250,247,242,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .sobre { grid-template-columns: 1fr; gap: 60px; }
+    .move-grid { grid-template-columns: repeat(2, 1fr); }
+    .pipeline { grid-template-columns: repeat(4, 1fr); gap: 24px 0; }
+    .pipeline::before { display: none; }
+    .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+    .move-header { flex-direction: column; align-items: flex-start; }
+    .move-header-right { text-align: left; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero, .sobre, .move-section, .jornada, .servicos, .cta-final, footer, .quote-strip, .segmentos, .quote-2 {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .servicos-grid { grid-template-columns: 1fr; }
+    .move-grid { grid-template-columns: 1fr; }
+    .pipeline { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="nav-brand-top">Em Movimento</span>
+    <span class="nav-brand-sub">Consultoria em Pessoas, Vendas & Operações</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#metodo">Método MOVE</a></li>
+    <li><a href="#caminhos">Caminhos</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#contato" class="nav-cta">Vamos conversar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">Movimento</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Consultoria em Pessoas, Vendas & Operações</span>
+    </div>
+    <h1 class="hero-title">
+      Geramos<br>
+      <em>movimento.</em>
+      Você colhe<br>resultados.
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-tagline">
+        Do diagnóstico à cultura da excelência — conectando <strong>pessoas, operações e vendas</strong> para levar seu negócio mais longe.
+      </p>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Role</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-left">
+    <p class="label">Quem está por trás</p>
+    <h2>Uma executiva de <em>chão de loja</em> e salas de decisão</h2>
+    <p>Sou a Keka — minha trajetória começa no entretenimento, passa por restaurantes e se consolida no varejo alimentício. Essa diversidade não é acidente: é o que me dá uma <strong>visão 360º real.</strong></p>
+    <p>Tenho uma relação apaixonada com produto. Da concepção à execução, do alimento à saudabilidade — acredito que <strong>todo produto tem seu dono e seu momento</strong>, e onde quer que eu esteja, meu olhar é encontrar os dois.</p>
+    <p>Formada em Magistério, minha filosofia é simples: não entrego peixe, <strong>ensino a pescar.</strong> Cada projeto deixa o time mais capaz do que quando cheguei. Com formação em Gestão Comercial, MBAs em IA & Marketing e em Gestão Estratégica de Pessoas, e cursos em <strong>PNL, Mentoria, Inteligência Emocional, Oratória e Apresentações</strong> — combino olhar analítico com escuta humana.</p>
+  </div>
+  <div class="sobre-right">
+    <div class="stat-block">
+      <div class="stat-num">20<span>+</span></div>
+      <div class="stat-info">
+        <h4>Anos de experiência</h4>
+        <p>Alimentos & Bebidas, Varejo e Cursos — e tudo que é correlato.</p>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">3</div>
+      <div class="stat-info">
+        <h4>Segmentos de atuação</h4>
+        <p>Alimentos & Bebidas, Varejo e Padaria & Confeitaria — e tudo que é correlato.</p>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">2</div>
+      <div class="stat-info">
+        <h4>MBAs</h4>
+        <p>IA & Marketing (Branding & Performance) + Gestão Estratégica de Pessoas.</p>
+      </div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">1</div>
+      <div class="stat-info">
+        <h4>Método próprio</h4>
+        <p>O método MOVE — estruturado do diagnóstico à cultura da excelência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO MOVE -->
+<section class="move-section" id="metodo">
+  <div class="move-inner">
+    <div class="move-header">
+      <div class="move-header-left">
+        <p class="label">Nossa metodologia</p>
+        <h2>O método <em>MOVE</em></h2>
+      </div>
+      <p class="move-header-right">Do diagnóstico à excelência — cada etapa conectada, cada ação com propósito. Dependendo do contrato, atuamos em todos os pilares ou focamos onde o seu negócio mais precisa, customizando cada projeto à real necessidade e expectativa do cliente.</p>
+    </div>
+    <div class="move-grid">
+      <div class="move-card">
+        <div class="move-letter">M</div>
+        <div class="move-word">Movimento</div>
+        <h3>Diagnóstico & Visão</h3>
+        <p>Olhamos para tudo — ambiente, pessoas, produtos, processos e resultados — para entender onde estamos e para onde vamos.</p>
+      </div>
+      <div class="move-card">
+        <div class="move-letter">O</div>
+        <div class="move-word">Operações</div>
+        <h3>Processos & Estrutura</h3>
+        <p>Mapeamos, organizamos e otimizamos operações para que a execução seja consistente, eficiente e escalável.</p>
+      </div>
+      <div class="move-card">
+        <div class="move-letter">V</div>
+        <div class="move-word">Vendas</div>
+        <h3>Produto & Cliente</h3>
+        <p>Conectamos o produto certo à pessoa certa, no momento certo — impulsionando vendas com estratégia e experiência do cliente.</p>
+      </div>
+      <div class="move-card">
+        <div class="move-letter">E</div>
+        <div class="move-word">Excelência</div>
+        <h3>Cultura & Resultado</h3>
+        <p>Formamos times de alta performance e cultivamos uma cultura onde a excelência não é esforço — é hábito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMINHOS -->
+<section class="caminhos" id="caminhos">
+  <div class="caminhos-inner">
+    <div class="caminhos-header">
+      <p class="label">Como chegar até nós</p>
+      <h2>Escolha seu <em>caminho</em></h2>
+      <p>De onde você está até onde quer chegar — há dois caminhos para colocar seu negócio em movimento. Cada um pensado para uma necessidade real.</p>
+    </div>
+    <div class="caminhos-grid">
+      <div class="caminho-card">
+        <span class="caminho-icon">🧭</span>
+        <p class="caminho-label">Caminho 1</p>
+        <h3>Mentoria <em>para o Líder</em></h3>
+        <p>O desenvolvimento começa em quem lidera. A mentoria individual é a porta de entrada — para o sócio-fundador que quer clareza estratégica e para os gestores que precisam evoluir como líderes.</p>
+        <ul class="caminho-items">
+          <li>Mentoria individual para sócio-fundador</li>
+          <li>Mentoria para gestores operacionais</li>
+          <li>Clareza de visão, estratégia e tomada de decisão</li>
+          <li>Desenvolvimento de liderança na prática</li>
+        </ul>
+      </div>
+      <div class="caminho-card">
+        <span class="caminho-icon">🏢</span>
+        <p class="caminho-label">Caminho 2</p>
+        <h3>Consultoria <em>para o Negócio</em></h3>
+        <p>Quando o desafio é estrutural, a consultoria atua fundo — nas pessoas, nos processos, nos produtos e nos resultados. Uma transformação completa, do diagnóstico à cultura da excelência.</p>
+        <ul class="caminho-items">
+          <li>Diagnóstico completo do negócio</li>
+          <li>Reestruturação de operações e processos</li>
+          <li>Estratégia de vendas e desenvolvimento de produtos</li>
+          <li>Formação de times e cultura de alta performance</li>
+          <li>Acompanhamento de resultados e planos de ação</li>
+        </ul>
+      </div>
+    </div>
+    <div class="caminhos-bridge">
+      <p>Os dois caminhos se complementam — <strong>o líder evolui, o negócio transforma.</strong><br>Você pode começar por um e chegar ao outro. O movimento é contínuo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section class="jornada">
+  <div class="jornada-header">
+    <p class="label">Como trabalhamos</p>
+    <h2>A jornada do seu <em>negócio</em></h2>
+  </div>
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="pipe-dot">🔍</div>
+      <h4>Diagnóstico</h4>
+      <p>Visão completa do negócio</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">🏠</div>
+      <h4>Ambiente & Pessoas</h4>
+      <p>Time e cultura</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">🍽️</div>
+      <h4>Produtos</h4>
+      <p>Mix, qualidade e inovação</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">⚙️</div>
+      <h4>Processos</h4>
+      <p>Estrutura e eficiência</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">📈</div>
+      <h4>Vendas</h4>
+      <p>Estratégia e execução</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">💰</div>
+      <h4>Resultados</h4>
+      <p>Métricas e planos de ação</p>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-dot">⭐</div>
+      <h4>Excelência</h4>
+      <p>Cultura sustentável</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip">
+  <blockquote>"Processos claros liberam pessoas. Pessoas libertas entregam o extraordinário."</blockquote>
+  <cite>— Keka Bittencourt</cite>
+</div>
+
+<!-- SERVIÇOS -->
+<section class="servicos" id="servicos">
+  <div class="servicos-inner">
+    <div class="servicos-header">
+      <p class="label">O que fazemos</p>
+      <h2>Serviços que <em>geram movimento</em></h2>
+    </div>
+    <div class="servicos-grid">
+      <div class="servico-card">
+        <div class="servico-icon">👥</div>
+        <h3>Pessoas & Cultura</h3>
+        <p>Treinamento operacional, desenvolvimento de lideranças, implantação de Universidade Corporativa e formação de times de alta performance.</p>
+        <div class="servico-tags">
+          <span class="tag">Treinamento & Desenvolvimento</span>
+          <span class="tag">Liderança</span>
+          <span class="tag">Cultura</span>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-icon">⚙️</div>
+        <h3>Operações & Processos</h3>
+        <p>Diagnóstico operacional, mapeamento e processos de produção, controle de perdas, gestão de estoque e implantação de padrões de excelência.</p>
+        <div class="servico-tags">
+          <span class="tag">Diagnóstico</span>
+          <span class="tag">Produção</span>
+          <span class="tag">Estoque</span>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-icon">📊</div>
+        <h3>Vendas & Resultados</h3>
+        <p>Estratégia de vendas, análise de DRE, orçamento, planos de ação e conexão entre produto e cliente — porque vender mais começa por entender melhor.</p>
+        <div class="servico-tags">
+          <span class="tag">Vendas</span>
+          <span class="tag">DRE</span>
+          <span class="tag">Orçamento</span>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-icon">🍽️</div>
+        <h3>Desenvolvimento de Produtos</h3>
+        <p>Da concepção à execução — criação de mix, novos sabores, marca própria e posicionamento de produto para o público certo.</p>
+        <div class="servico-tags">
+          <span class="tag">Produto</span>
+          <span class="tag">A&B</span>
+          <span class="tag">Marca Própria</span>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-icon">🌱</div>
+        <h3>Alimentação Saudável & Bem-estar</h3>
+        <p>Consultoria especializada para negócios de alimentação saudável, bem-estar e produtos naturais que querem escalar com propósito.</p>
+        <div class="servico-tags">
+          <span class="tag">Saudável</span>
+          <span class="tag">Bem-estar</span>
+          <span class="tag">Propósito</span>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-icon">🌾</div>
+        <h3>Do Campo à Marca</h3>
+        <p>Para produtores que querem criar um produto final, desenvolver sua marca própria e chegar ao consumidor com identidade e propósito.</p>
+        <div class="servico-tags">
+          <span class="tag">Produtor</span>
+          <span class="tag">Marca</span>
+          <span class="tag">Produto Final</span>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top: 40px; text-align: center; font-size: 14px; font-weight: 300; color: var(--muted); border-top: 1px solid var(--line); padding-top: 40px;">
+      ✦ Contamos com parceiros especialistas em diversas áreas que podem contribuir com as soluções oferecidas, ampliando a capacidade de entrega em cada projeto.
+    </p>
+  </div>
+</section>
+<section class="segmentos">
+  <p class="label">Segmentos de atuação</p>
+  <div class="seg-pills">
+    <span class="seg-pill">Alimentos & Bebidas</span>
+    <span class="seg-pill">Padaria & Confeitaria</span>
+    <span class="seg-pill">Varejo</span>
+    <span class="seg-pill">Restaurantes</span>
+    <span class="seg-pill">Alimentação Saudável & Bem-estar</span>
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+<div class="quote-2">
+  <blockquote>"Às vezes, o melhor movimento para frente começa com um passo para trás."</blockquote>
+  <div class="quote-2-deco">
+    <div class="quote-2-line"></div>
+    <span>Keka Bittencourt</span>
+    <div class="quote-2-line"></div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contato">
+  <p class="label">Vamos começar</p>
+  <h2>Pronto para colocar<br>seu negócio <em>em movimento?</em></h2>
+  <p>Conectando vendas e operações para levar seu negócio mais longe. Fale comigo — vamos entender juntos o que o seu negócio precisa.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/5511940762044" target="_blank" class="btn-primary">
+      💬 WhatsApp
+    </a>
+    <a href="https://www.linkedin.com/in/kelen-bittencourt-ramos" target="_blank" class="btn-secondary">
+      LinkedIn
+    </a>
+  </div>
+  <p class="cta-closing-quote">"Processos claros liberam pessoas. Pessoas libertas entregam o extraordinário."</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    Em Movimento
+    <span>Consultoria em Pessoas, Vendas & Operações</span>
+  </div>
+  <p class="footer-copy">© 2025 Kelen Bittencourt Ramos · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>
