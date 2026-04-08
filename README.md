@@ -1,6 +1,6 @@
 # Em Movimento
 
-**Consultoria em Pessoas, Vendas & Operações**
+**Mentoria e Consultoria - Pessoas, Vendas & Operações**
 
 ### Estratégia, Expansão e Cultura orientadas a resultado
 
